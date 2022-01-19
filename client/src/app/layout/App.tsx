@@ -12,6 +12,7 @@ import ContactPage from "../../features/contact/ContactPage";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import ServerError from "../errors/ServerError";
+import Basketpage from "../../features/basket/BasketPage";
 
 function App() {
   const [darkMode, setDarkMode] = useState(false);
@@ -42,6 +43,7 @@ function App() {
           <Route path='/about' element={<AboutPage />} />
           <Route path='/contact' element={<ContactPage />} />
           <Route path='/server-error' element={<ServerError />} />
+          <Route path='/basket' element={<Basketpage />} />
         </Routes>
       </Container>
     </ThemeProvider>
