@@ -13,7 +13,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddDbContext<StoreContext>(x => x.UseSqlite(connectionString));
+builder.Services.AddDbContext<StoreContext>(x => x.UseSqlServer(connectionString));
 
 builder.Services.AddCors();
 var app = builder.Build();
@@ -29,7 +29,7 @@ if (app.Environment.IsDevelopment())
 
 // app.UseHttpsRedirection();
 app.UseCors(opt =>{
-    opt.AllowAnyHeader().AllowAnyHeader().WithOrigins("http://localhost:3000");
+    opt.AllowAnyHeader().AllowAnyMethod().AllowCredentials().WithOrigins("http://localhost:3000");
 });
 
 app.UseAuthorization();
