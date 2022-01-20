@@ -2,10 +2,11 @@ import { ThemeContext } from "@emotion/react";
 import { Box } from "@material-ui/core";
 import { LoadingButton } from "@material-ui/lab";
 import { Add, Delete, Remove } from "@mui/icons-material";
-import { IconButton, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from "@mui/material";
+import { Grid, IconButton, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from "@mui/material";
 import { useState } from "react";
 import agent from "../../app/api/agent";
 import { useStoreContext } from "../../app/context/StoreContext";
+import BasketSumary from "./BasketSumary";
 
 export default function Basketpage() {
     const {basket, setBasket, removeItem} = useStoreContext();
@@ -30,6 +31,7 @@ export default function Basketpage() {
     if (!basket) return <Typography variant="h3">Your basket is empty</Typography>
 
     return (
+        <>
         <TableContainer component={Paper}>
             <Table sx={{ minWidth: 650 }} >
                 <TableHead>
@@ -74,5 +76,13 @@ export default function Basketpage() {
                 </TableBody>
             </Table>
         </TableContainer>
+        <Grid container>
+            <Grid item xs={6} />
+            <Grid item xs={6}>
+            <BasketSumary/>
+            </Grid>
+            
+        </Grid>
+        </>
     )
 }
