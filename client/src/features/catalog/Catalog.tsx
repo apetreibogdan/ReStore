@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../store/configureStore";
-import { fetchProductAsync, productSelectors } from "./catalogSlice";
+import { fetchProductsAsync, productSelectors } from "./catalogSlice";
 import ProductList from "./ProductList";
 
 export default function Catalog() {
@@ -8,8 +8,8 @@ export default function Catalog() {
     const dispatch = useAppDispatch();
 
     useEffect(() => {
-         dispatch(fetchProductAsync());
-    }, []);
+         dispatch(fetchProductsAsync());
+    }, [dispatch]);
 
     return (
         <>
