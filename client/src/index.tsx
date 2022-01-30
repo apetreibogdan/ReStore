@@ -4,7 +4,6 @@ import './app/layout/stayles.css';
 import App from './app/layout/App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
-import { StoreProvider } from './app/context/StoreContext';
 import { Provider } from 'react-redux';
 import { store } from './features/store/configureStore';
 
@@ -13,11 +12,9 @@ import { store } from './features/store/configureStore';
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter >
-      <StoreProvider>
         <Provider store ={store}>
         <App />
         </Provider>
-      </StoreProvider>
     </BrowserRouter>
   </React.StrictMode>,
   document.getElementById('root')
