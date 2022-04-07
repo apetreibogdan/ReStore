@@ -3,7 +3,7 @@
 ## About The Project
 
 RE-Store online marketplace, where people come together to make, sell, buy, and collect unique items.
-Main porposse is educational.
+The aim of the project is to learn React and to consolidate knowledge in .net framework.
 Not all options are implemented, yet.
 
 
