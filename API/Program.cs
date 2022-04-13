@@ -1,5 +1,6 @@
 using API.Data;
 using API.Middleware;
+using API.Migrations;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 
@@ -16,10 +17,16 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<StoreContext>(x => x.UseSqlServer(connectionString));
 
 builder.Services.AddCors();
+
+builder.Services.AddScoped<DbInitializer>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
 app.UseMiddleware<ExceptionMiddleware>();
+
+SeedDb();
+
 if (app.Environment.IsDevelopment())
 {   
     // app.UseDeveloperExceptionPage();
@@ -37,3 +44,11 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+void SeedDb() //can be placed at the very bottom under app.Run()
+{
+    using (var scope = app.Services.CreateScope())
+    {
+        var dbInitializer = scope.ServiceProvider.GetRequiredService<DbInitializer>();
+        dbInitializer.Initialize();
+    }
+}
