@@ -1,3 +1,4 @@
+using Amazon.S3;
 using API.Data;
 using API.Middleware;
 using API.Migrations;
@@ -13,11 +14,11 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddDefaultAWSOptions(builder.Configuration.GetAWSOptions());
+builder.Services.AddAWSService<IAmazonS3>();
 
 builder.Services.AddDbContext<StoreContext>(x => x.UseSqlServer(connectionString));
-
 builder.Services.AddCors();
-
 builder.Services.AddScoped<DbInitializer>();
 
 var app = builder.Build();
