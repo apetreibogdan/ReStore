@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Amazon.S3;
 using API.Data;
 using API.Entities;
 using Microsoft.AspNetCore.Mvc;
@@ -26,5 +27,12 @@ namespace API.Controllers
             if(product==null) return NotFound();
             return product;
         }
+
+        //[HttpPost]
+        //public async Task Post(IFormFile formFile)
+        //{
+        //    var client = new AmazonS3Client();
+
+        //}
     }
 }
