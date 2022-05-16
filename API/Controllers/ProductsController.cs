@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using Amazon.S3;
 using API.Data;
@@ -18,10 +19,11 @@ namespace API.Controllers
             _context = context;
         }
         [HttpGet]
-        public async Task<ActionResult<List<Product>>> GetProducts(string orderBy)
+        public async Task<ActionResult<List<Product>>> GetProducts(string? orderBy= null, string? serchTerm=null)
         {
             var query = _context.Products
                  .Sort(orderBy)
+                 .Search(serchTerm)
                  .AsQueryable();
 
             return await query.ToListAsync();

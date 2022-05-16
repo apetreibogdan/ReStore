@@ -12,9 +12,18 @@ namespace API.Extensions
             {
                 "price" => query.OrderBy(p => p.Price),
                 "priceDesc" => query.OrderByDescending(p => p.Price),
-                _ => query.OrderBy(p => p.Name)
+               _ => query.OrderBy(p => p.Name)
             };
             return query;
+        }
+
+        public static IQueryable<Product> Search(this IQueryable<Product> query, string serchTerm)
+        {
+            if (string.IsNullOrWhiteSpace(serchTerm)) return query;
+
+            var lowerCaseSerchTerm = serchTerm.Trim().ToLower();
+
+            return query.Where(p => p.Name.ToLower().Contains(lowerCaseSerchTerm));
         }
     }
 }
